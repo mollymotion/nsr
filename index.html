@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>NSR – Post-Punk NYC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,15 +11,14 @@
 
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 
 <body class="text-white relative">
   <!-- Hero Section -->
   <section class="h-screen w-full relative hero">
 
-    <img class="hero-image" alt="Hero Image" loading="lazy">
+    <img class="hero-image" alt="Hero Image">
 
     <div id="slice-mask" class="hero-mask"></div>
 
@@ -27,7 +26,7 @@
     <div class="z-10 navbar-nav z-10 w-full absolute flex flex-col justify-between top-0">
       <!-- Logo container -->
       <div id="logo-container" class="logo-container">
-        <img src="./images/logo-splat.svg" alt="NSR Logo" class="logo-container--logo" loading="lazy">
+        <img src="./images/logo-splat.svg" alt="NSR Logo" class="logo-container--logo">
       </div>
       <!-- Add social media links -->
       <svg xmlns="http://www.w3.org/2000/svg" class="hidden" style="display: none !important">
@@ -96,7 +95,7 @@
       <div class="flex flex-col lg:flex-row gap-8 items-start shows-card" style="--bg-image: url('${artistImage}')">
         <!-- Artist Image Column (Left) -->
         <div class="grid-card--img lg:w-1/3 w-full flex-shrink-0">
-          <img src="${thumbUrl}" alt="Artist Image" class="w-full h-auto object-cover grid-card--imgreg" loading="lazy" />
+          <img src="${thumbUrl}" alt="Artist Image" class="w-full h-auto object-cover grid-card--imgreg" />
         </div>
         <!-- Shows List Column (Right) -->
         <div class="lg:w-2/3 w-full space-y-4" id="shows-list">
@@ -106,7 +105,7 @@
     </div>
   </template>
 
-  <template id="tpl_shows">
+<template id="tpl_shows">
     <a href="${url}" class="ticket-link block grid-card show-card" target="_blank">
           <div class="text-xl font-semibold">${date} ${time}</div>
           <h4 class="grid-card--title text-lg">${venueName}</h4>
@@ -116,7 +115,6 @@
     </a>
   </template>
 
-  
 
   <section id="shows" class="sectionbg w-screen relative">
     <div class="px-6 pt-20 sm:px-12 text-white max-w-7xl mx-auto">
@@ -127,6 +125,7 @@
       </div>
     </div>
   </section>
+
   
   <!-- Merch Section 
   <section id="merch" class="sectionbg w-screen relative bg-black/50 backdrop-blur-lg">
@@ -137,17 +136,17 @@
 
         <div class="grid-card">
           <h3 class="grid-card--title">Coaster Set</h3>
-          <img src="./images/merch/coasters.webp" class="w-24 h-24 object-cover mx-auto grid-card--img" loading="lazy">
+          <img src="./images/merch/coasters.webp" class="w-24 h-24 object-cover mx-auto grid-card--img">
         </div>
 
         <div class="grid-card">
           <h3 class="grid-card--title">Outdoor Speaker</h3>
-          <img src="./images/merch/speaker.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img " loading="lazy">
+          <img src="./images/merch/speaker.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img ">
         </div>
 
         <div class="grid-card">
           <h3 class="grid-card--title">Business Card Holder</h3>
-          <img src="./images/merch/business-card-holder.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img" loading="lazy">
+          <img src="./images/merch/business-card-holder.jpg" class="w-24 h-24 object-cover mx-auto grid-card--img">
         </div>
 
       </div>
@@ -164,7 +163,7 @@
             <iframe width="100%" src="https://www.youtube.com/embed/KUpWpuhXKCA?si=Ii3cfk9LKoiAkg5j"
               title="YouTube video player" frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -183,7 +182,7 @@
             <div class="flex items-start gap-4">
               <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/" target="_blank">
                 <img src="./images/press/darkroom.png" alt="Performance at Dark Room"
-                  class="w-60 h-60 object-cover flex-shrink-0" loading="lazy" />
+                  class="w-60 h-60 object-cover flex-shrink-0" />
               </a>
               <div class="flex-1 flex flex-col justify-between h-60 text-left">
                 <div>
@@ -191,7 +190,7 @@
                     <a href="https://www.musicfiends.com/none-shall-remain-dazzle-at-dark-room-brooklyn/"
                       target="_blank" class="hover:underline">
                       <img src="./images/press/mf-site.png" alt="Music Fiends"
-                        class="h-16 w-auto object-contain inline" loading="lazy" />
+                        class="h-16 w-auto object-contain inline" />
                     </a>
                   </div>
                   <div class="mb-2">
@@ -218,7 +217,7 @@
               <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
               target="_blank">
                 <img src="./images/press/dancin-still.png" alt="Debut Animated Lyric Video for Dancin' On My Own Grave"
-                class="dancin w-60 h-60 object-cover flex-shrink-0" loading="lazy" />
+                class="dancin w-60 h-60 object-cover flex-shrink-0" />
               </a>
               <div class="flex-1 flex flex-col justify-between h-60 text-left">
                 <div>
@@ -226,7 +225,7 @@
                     <a href="https://post-punk.com/none-shall-remain-debut-animated-lyric-video-for-spooky-gothic-rock-track-dancin-on-my-own-grave/"
                     target="_blank" class="hover:underline">
                     <img src="./images/press/postpunkglow.webp" alt="Post-Punk.com"
-                    class="h-16 w-auto object-contain inline" loading="lazy" />
+                    class="h-16 w-auto object-contain inline" />
                   </a>
                 </div>
                 <div class="mb-2">
@@ -249,7 +248,7 @@
             <div class="flex items-start gap-4">
               <a href="https://www.mixcloud.com/ensom-kr%C3%A5ke/posts/none-shall-remain-a-hymn-of-decay-a-summoning-of-the-night/" target="_blank">
                 <img src="./images/press/heart-of-goth.png" alt="A Hymn of Decay, A Summoning of the Night"
-                  class="w-60 h-60 object-cover flex-shrink-0" loading="lazy" />
+                  class="w-60 h-60 object-cover flex-shrink-0" />
               </a>
               <div class="flex-1 flex flex-col justify-between h-60 text-left">
                 <div>
@@ -257,7 +256,7 @@
                     <a href="https://www.mixcloud.com/ensom-kr%C3%A5ke/posts/none-shall-remain-a-hymn-of-decay-a-summoning-of-the-night/"
                       target="_blank" class="hover:underline">
                       <img src="./images/press/heart-of-goth-logo.png" alt="Heart of Goth"
-                        class="h-16 w-auto object-contain inline" loading="lazy" />
+                        class="h-16 w-auto object-contain inline" />
                     </a>
                   </div>
                   <div class="mb-2">
@@ -315,40 +314,41 @@
     </button>
   </div>  
 
-  <!-- Footer -->
-  <footer class="relative">
-    <div class="absolute bottom-0 left-0 w-3/4">
-      <img src="./images/band-collage-footer.svg" alt="Band Collage" class="w-3/4" loading="lazy" />
-    </div>
-    <div class="absolute bottom-0 right-0 footer-copyright">
-      &copy; 2025 NSR – All rights reserved.
-    </div>
+ <!-- Footer -->
+<footer class="relative">
+  <div class="absolute bottom-0 left-0 w-full md:w-3/4">
+    <img src="./images/band-collage-footer.svg" alt="Band Collage" class="w-full md:w-3/4" />
+  </div>
+  <div class="absolute bottom-0 right-0 footer-copyright">
+    &copy; 2025 NSR – All rights reserved.
+  </div>
+</footer>
+
 
     
-
   </footer>
 
   <!-- Parallax Silhouette -->
   <!-- Replace the existing parallax-silhouette section with: -->
 <div class="parallax-container">
   <div class="parallax-silhouette parallax-silhouette-1">
-    <img src="./images/silhouettes/peter.png" alt="Silhouette 1" loading="lazy" />
+    <img src="./images/silhouettes/peter.png" alt="Silhouette 1" />
   </div>
   <div class="parallax-silhouette parallax-silhouette-2">
-    <img src="./images/silhouettes/stas.png" alt="Silhouette 2" loading="lazy" />
+    <img src="./images/silhouettes/stas.png" alt="Silhouette 2" />
   </div>
   <div class="parallax-silhouette parallax-silhouette-3">
-    <img src="./images/silhouettes/cesar.png" alt="Silhouette 3" loading="lazy" />
+    <img src="./images/silhouettes/cesar.png" alt="Silhouette 3" />
   </div>
   <div class="parallax-silhouette parallax-silhouette-4">
-    <img src="./images/silhouettes/matt.png" alt="Silhouette 4" loading="lazy" />
+    <img src="./images/silhouettes/matt.png" alt="Silhouette 4" />
   </div>
 </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script type="module" src="js/main.js"></script>
-  <script src="js/lenis.min.js"></script>
-  <script src="js/smooth-scroll-lenis.js"></script>
+
+
 
 
   <script>
@@ -404,14 +404,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.0/lottie.min.js"></script>
 
-  <script>
-    // Set --vh custom property for mobile Safari 100vh fix
-    function setVh() {
-      document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
-    }
-    window.addEventListener('resize', setVh);
-    setVh();
-  </script>
 
 </body>
 

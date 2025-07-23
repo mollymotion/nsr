@@ -134,8 +134,8 @@ export default class BandsInTown {
 
         // Create the main shows section layout with artist images
         const sectionFragment = this.sectionTemplate.content.cloneNode(true);
-        const thumbUrl = shows[0]?.artist?.thumb_url || './images/press/darkroom.png';
-        const artistImage = shows[0]?.artist?.image_url || './images/press/darkroom.png';
+        const thumbUrl = shows[0]?.artist?.thumb_url || '';
+        const artistImage = shows[0]?.artist?.image_url || '';
         
         // Replace both image placeholders in the section template
         const sectionHtml = sectionFragment.firstElementChild.innerHTML

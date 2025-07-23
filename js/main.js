@@ -4,15 +4,6 @@ import Nav from './sticky-nav.js';
 import ParallaxController from './parallax.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // --- Safari mobile viewport height fix ---
-  function setVh() {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
-  window.addEventListener('resize', setVh);
-  window.addEventListener('orientationchange', setVh);
-  setVh();
-  // --- End viewport fix ---
   console.log('DOM Content Loaded');
   
   // Initialize StickyNav
@@ -46,7 +37,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     { src: './images/hero/mobile-clip-stas.gif', type: 'image' },
     { src: './images/hero/mobile-clip-cesar.gif', type: 'image' },
     { src: './images/hero/mobile-clip-matt.gif', type: 'image' },
-    { src: './images/guys.png', type: 'image' }, // Added guys.png as last image
   ] : [
     { src: './images/hero/heroclip-peter.mp4', type: 'video' },
     { src: './images/hero/heroclip-stas.mp4', type: 'video' },
@@ -147,7 +137,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Initialization error:', error);
   }
 });
+function renderShows(data) {
+  const showsContainer = document.getElementById('shows-container');
+  showsContainer.innerHTML = '';
 
+  const sectionTpl = document.getElementById('tpl_shows_section').innerHTML;
+  const entryTpl = document.getElementById('tpl_shows').innerHTML;
+
+  data.shows.forEach(show => {
+    const sectionHTML = sectionTpl.replace('${thumbUrl}', show.thumbUrl);
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = sectionHTML;
+
+    const showsList = wrapper.querySelector('#shows-list');
+
+    show.events.forEach(event => {
+      const eventHTML = entryTpl
+        .replace('${url}', event.url)
+        .replace('${date}', event.date)
+        .replace('${time}', event.time)
+        .replace('${venueName}', event.venueName)
+        .replace('${venueCity}', event.venueCity)
+        .replace('${desc}', event.desc || '');
+      showsList.insertAdjacentHTML('beforeend', eventHTML);
+    });
+
+    showsContainer.appendChild(wrapper.firstElementChild);
+  });
+}
 // Bandsintown Integration
 document.addEventListener("DOMContentLoaded", () => {
   const bandsInTown = new BandsInTown();
@@ -166,13 +183,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       });
     }
   });
-});
-
-// Safari background render bug fix
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.body.style.display = 'none';
-    document.body.offsetHeight; // Force reflow
-    document.body.style.display = '';
-  }, 100);
 });
