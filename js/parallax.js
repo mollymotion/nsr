@@ -10,10 +10,12 @@ class ParallaxController {
       return;
     }
 
+    // Set dynamic positioning for silhouettes based on their respective sections
     this.updateSilhouettePositions();
 
     let ticking = false;
 
+    // ...existing code...
     const updateParallax = () => {
       const scrolled = window.pageYOffset;
 
@@ -21,15 +23,19 @@ class ParallaxController {
         let parallaxSpeed;
         let initialOffset = 0;
 
+        // Keep Peter at his current speed (index 0)
         if (index === 0) {
-          parallaxSpeed = 1.2;
-        } else {
+          parallaxSpeed = 1.2; // 1.2x (unchanged)
+        }
+        // Give Stas, Cesar and Matt slower speeds and account for their positioning
+        else {
           if (index === 1) {
-            parallaxSpeed = 1.4;
+            parallaxSpeed = 1.4; // 1.4x for Stas
           } else {
-            parallaxSpeed = 1.2 + ((index - 2) * 0.1);
+            parallaxSpeed = 1.2 + ((index - 2) * 0.1); // 1.2x for Cesar, 1.3x for Matt
           }
 
+          // Get their initial top position set by updateSilhouettePositions
           const currentTop = parseInt(silhouette.style.top) || 0;
           initialOffset = currentTop;
         }
@@ -40,6 +46,7 @@ class ParallaxController {
 
       ticking = false;
     };
+    // ...existing code...
 
     window.addEventListener('scroll', () => {
       if (!ticking) {
@@ -48,6 +55,7 @@ class ParallaxController {
       }
     });
 
+    // Update positions when window resizes (in case content changes)
     window.addEventListener('resize', () => {
       this.updateSilhouettePositions();
     });
@@ -58,26 +66,29 @@ class ParallaxController {
   updateSilhouettePositions() {
     const pressSection = document.getElementById('press');
     const videosSection = document.getElementById('videos');
-
+    
     if (pressSection) {
       const pressOffset = pressSection.offsetTop;
-
+      
+      // Position Cesar slightly below the press header
       const cesarSilhouette = document.querySelector('.parallax-silhouette-3');
       if (cesarSilhouette) {
         cesarSilhouette.style.top = `${pressOffset - 900}px`;
       }
-
+      
+      // Position Matt below Cesar
       const mattSilhouette = document.querySelector('.parallax-silhouette-4');
       if (mattSilhouette) {
         mattSilhouette.style.top = `${pressOffset - 650}px`;
       }
     }
-
+    
+    // Position Stas relative to videos section
     if (videosSection) {
       const videosOffset = videosSection.offsetTop;
       const stasSilhouette = document.querySelector('.parallax-silhouette-2');
       if (stasSilhouette) {
-        stasSilhouette.style.top = `${videosOffset - 300}px`;
+        stasSilhouette.style.top = `${videosOffset - 300}px`; // Position at videos header
       }
     }
   }

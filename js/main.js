@@ -137,34 +137,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Initialization error:', error);
   }
 });
-function renderShows(data) {
-  const showsContainer = document.getElementById('shows-container');
-  showsContainer.innerHTML = '';
 
-  const sectionTpl = document.getElementById('tpl_shows_section').innerHTML;
-  const entryTpl = document.getElementById('tpl_shows').innerHTML;
-
-  data.shows.forEach(show => {
-    const sectionHTML = sectionTpl.replace('${thumbUrl}', show.thumbUrl);
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = sectionHTML;
-
-    const showsList = wrapper.querySelector('#shows-list');
-
-    show.events.forEach(event => {
-      const eventHTML = entryTpl
-        .replace('${url}', event.url)
-        .replace('${date}', event.date)
-        .replace('${time}', event.time)
-        .replace('${venueName}', event.venueName)
-        .replace('${venueCity}', event.venueCity)
-        .replace('${desc}', event.desc || '');
-      showsList.insertAdjacentHTML('beforeend', eventHTML);
-    });
-
-    showsContainer.appendChild(wrapper.firstElementChild);
-  });
-}
 // Bandsintown Integration
 document.addEventListener("DOMContentLoaded", () => {
   const bandsInTown = new BandsInTown();
@@ -184,9 +157,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-
-
-
-
-
-  

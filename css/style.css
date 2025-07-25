@@ -30,18 +30,34 @@ html {
   margin: 0;
   padding: 0;
 }
-
 body {
+  /* Layout */
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background: url('../images/pink-bg.svg') no-repeat center center fixed;
-  background-size: cover;
-  background-color: #e0e0e0;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  /* Background (Client's working version) */
+  background-color: #e0e0e0; /* Fallback */
+  background-image: url('../images/pink-bg.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; /* Client-confirmed working */
+
+  /* Safari-specific enhancements */
+  @supports (-webkit-touch-callout: none) {
+    /* Preserve client's working config */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Optional: Add if seeing minor rendering differences */
+    transform: translate3d(0, 0, 0);
+  }
 }
+
 
 /* ==========================================================================
    TYPOGRAPHY
@@ -333,15 +349,15 @@ section {
     background-color: var(--secondary-color);
     z-index: -1;
   }
-.grid-card {
-  background-color: #000000 !important;
-  margin: 0;
 
-  &:hover {
-    box-shadow: none;
+  .grid-card {
+    background-color: black;
+    margin: 0;
+
+    &:hover {
+      box-shadow: none;
+    }
   }
-}
-
 }
 
 @media screen and (min-width: 960px) {
@@ -604,92 +620,119 @@ section {
   }
 }
 
+
 /* ==========================================================================
-   PARALLAX SILHOUETTES – Clean & Responsive
+   PARALLAX EFFECTS
    ========================================================================== */
-.parallax-silhouette {
-  position: absolute;
-  width: auto;
-  height: auto;
-  max-width: none;
+.parallax-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
-  user-select: none;
-  will-change: transform;
-  z-index: 5;
+  z-index: -1;
 }
 
+.parallax-silhouette {
+  position: absolute;
+  width: 30vw; /* Change from 100vw to 20vw */
+  height: auto; /* Change from 100vh to auto */
+  pointer-events: none;
+  will-change: transform;
+
+  img {
+    width: 100%; /* This will now be 100% of the 20vw container */
+    height: auto; /* Change from 100% to auto to maintain aspect ratio */
+    object-fit: contain; /* Change from cover to contain to prevent cropping */
+    opacity: 1;
+    display: block;
+  }
+}
+
+/* Position each silhouette at different horizontal AND vertical positions */
+/* Position each silhouette at different horizontal AND vertical positions */
 .parallax-silhouette-1 {
-  top: 100px;
-  left: 3%;
-  width: 160px;
+  top: 120vh; /* Around videos header */
+  right: 0; /* Peter at far right of viewport */
+  left: auto;
 }
 
 .parallax-silhouette-2 {
-  top: 300px;
-  left: 10%;
-  width: 180px;
+  top: 230vh; /* Around shows header */
+  left: 0; /* Stas aligned to left of viewport */
 }
 
 .parallax-silhouette-3 {
-  top: 800px;
-  left: 8%;
-  width: 200px;
+  /* Position relative to press section instead of fixed viewport height */
+  right: 0; /* Cesar aligned to right of viewport */
+  left: auto;
+  width: 40vw;
 }
 
 .parallax-silhouette-4 {
-  top: 1150px;
-  left: 6%;
-  width: 220px;
+  /* Position relative to press section, below Cesar */
+  left: 0; /* Matt aligned to left of viewport */
+  width: 40vw;
 }
 
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  .parallax-silhouette-1 { width: 100px; top: 80px; }
-  .parallax-silhouette-2 { width: 120px; top: 240px; }
-  .parallax-silhouette-3 { width: 140px; top: 700px; }
-  .parallax-silhouette-4 { width: 160px; top: 1000px; }
+  .parallax-silhouette {
+    width: 40vw; /* Change from 30vw to 40vw for mobile */
+  }
+  
+  /* Keep same positioning logic for mobile but adjust if needed */
+  .parallax-silhouette-1 {
+    right: 0;
+    left: auto;
+  }
+  
+  .parallax-silhouette-2 {
+    left: 0;
+  }
+  
+  .parallax-silhouette-3 {
+    right: 0;
+    left: auto;
+    width: 50vw; /* Make Cesar even bigger on mobile */
+  }
+  
+  .parallax-silhouette-4 {
+    left: 0;
+    width: 50vw; /* Make Matt even bigger on mobile */
+  }
 }
-
-
 
 /* ==========================================================================
    FOOTER
    ========================================================================== */
 footer {
-  position: relative;
-  z-index: 8;
   pointer-events: none;
+  z-index: 8;
 }
 
-/* Copyright styling */
 .footer-copyright {
   font-size: 0.875rem;
   padding: 0.5rem 1rem;
-  background: #0e0e0e;
-  color: white;
-  pointer-events: auto;
+  background: var(--secondary-color-rgb);
 }
 
-/* Mobile-specific padding */
+/* Footer Media Queries */
 @media (max-width: 768px) {
+  footer .absolute.bottom-0.left-0 {
+    width: 100%;
+  }
+  
+  footer .absolute.bottom-0.left-0 img {
+    width: 100%;
+  }
+  
   footer {
     padding-top: 9rem !important;
     padding-bottom: 8rem !important;
   }
-  footer .absolute.bottom-0.left-0 img {
-    width: 100%;
-  }
 }
-
-/* Desktop-specific padding */
-@media (min-width: 769px) {
-  footer {
-    padding: 2rem 1rem;
-  }
-}
-
-
-
-
 
 /* ==========================================================================
    SPOTIFY PLAYER
@@ -747,7 +790,7 @@ footer {
   }
 }
 
-/* Fix Safari viewport issues */
+* Fix Safari viewport issues */
 html, body {
   height: 100%;
   margin: 0;
