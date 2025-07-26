@@ -157,3 +157,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+window.addEventListener("load", fixSilhouetteDesktop);
+window.addEventListener("resize", fixSilhouetteDesktop);
+
+function fixSilhouetteDesktop() {
+  if (window.innerWidth > 768) {
+    const press = document.querySelector("#press");
+    const cesar = document.querySelector(".parallax-silhouette-3");
+    const matt = document.querySelector(".parallax-silhouette-4");
+
+    if (press && cesar && matt) {
+      const pressTop = press.getBoundingClientRect().top + window.scrollY;
+
+      cesar.style.top = `${pressTop}px`;
+      matt.style.top = `${pressTop + 250}px`;
+    }
+  }
+}
+
+
+
+
+  

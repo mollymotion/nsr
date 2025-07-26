@@ -25,14 +25,14 @@ class ParallaxController {
 
         // Keep Peter at his current speed (index 0)
         if (index === 0) {
-          parallaxSpeed = 1.2; // 1.2x (unchanged)
+          parallaxSpeed = 0.2; // 1.2x (unchanged)
         }
         // Give Stas, Cesar and Matt slower speeds and account for their positioning
         else {
           if (index === 1) {
-            parallaxSpeed = 1.4; // 1.4x for Stas
+            parallaxSpeed = 0.4; // 1.4x for Stas
           } else {
-            parallaxSpeed = 1.2 + ((index - 2) * 0.1); // 1.2x for Cesar, 1.3x for Matt
+            parallaxSpeed = 0.2 + ((index - 2) * 0.1); // 1.2x for Cesar, 1.3x for Matt
           }
 
           // Get their initial top position set by updateSilhouettePositions
