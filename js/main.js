@@ -4,6 +4,15 @@ import Nav from './sticky-nav.js';
 import ParallaxController from './parallax.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  // --- Safari mobile viewport height fix ---
+  function setVh() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+  window.addEventListener('resize', setVh);
+  window.addEventListener('orientationchange', setVh);
+  setVh();
+  // --- End viewport fix ---
   console.log('DOM Content Loaded');
   
   // Initialize StickyNav
@@ -37,6 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     { src: './images/hero/mobile-clip-stas.gif', type: 'image' },
     { src: './images/hero/mobile-clip-cesar.gif', type: 'image' },
     { src: './images/hero/mobile-clip-matt.gif', type: 'image' },
+    { src: './images/guys.png', type: 'image' }, // Added guys.png as last image
   ] : [
     { src: './images/hero/heroclip-peter.mp4', type: 'video' },
     { src: './images/hero/heroclip-stas.mp4', type: 'video' },
@@ -158,25 +168,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-window.addEventListener("load", fixSilhouetteDesktop);
-window.addEventListener("resize", fixSilhouetteDesktop);
-
-function fixSilhouetteDesktop() {
-  if (window.innerWidth > 768) {
-    const press = document.querySelector("#press");
-    const cesar = document.querySelector(".parallax-silhouette-3");
-    const matt = document.querySelector(".parallax-silhouette-4");
-
-    if (press && cesar && matt) {
-      const pressTop = press.getBoundingClientRect().top + window.scrollY;
-
-      cesar.style.top = `${pressTop}px`;
-      matt.style.top = `${pressTop + 250}px`;
-    }
-  }
-}
-
-
-
-
-  
+// Safari background render bug fix
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.body.style.display = 'none';
+    document.body.offsetHeight; // Force reflow
+    document.body.style.display = '';
+  }, 100);
+});
